@@ -1,0 +1,79 @@
+* {
+    box-sizing: border-box;
+}
+
+div.error {
+    color: red;
+}
+
+div[ng-controller] {
+    width : 900px;
+    height: 100%;
+    margin: 0 auto;
+}
+
+div.options {
+    margin    : 10px;
+    word-break: break-all;
+}
+
+a {
+    cursor       : pointer;
+    border-radius: 5px;
+    border       : 1px solid #aaa;
+    padding      : 5px 10px;
+    margin-right : 10px;
+    display      : inline-block;
+}
+
+a:hover {
+    background-color: #ccc;
+}
+
+a.sel {
+    background-color: #ddd;
+}
+
+div[pi-drop] {
+    width      : 100%;
+    height     : 100px;
+    line-height: 80px;
+    border     : 1px solid #aaa;
+    position   : relative;
+    padding    : 10px;
+    text-align : center;
+}
+
+div[pi-drop].dragging {
+    box-shadow      : inset 0px 0px 0px 2px #00C;
+    background-color: #ddd;
+}
+
+input[type=file] {
+    position: absolute;
+    left    : 10px;
+    bottom  : 10px;
+}
+
+td {
+    border : 1px solid #aaa;
+    padding: 5px;
+}
+
+table {
+    width          : 100%;
+    border-spacing : 0;
+    border-collapse: collapse;
+}
+
+.content {
+    margin: 10px;
+    width : 100%;
+    border: 2px solid #000;
+}
+
+.content.mono {
+    white-space: pre;
+    font-family: 'Courier New', Courier, monospace;
+    overflow   : auto;
+}

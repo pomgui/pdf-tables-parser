@@ -1,0 +1,51 @@
+{
+  "name": "@pomgui/pdf-tables-parser",
+  "version": "0.1.0",
+  "description": "Library to extract text tables from pdf files.",
+  "keywords": [
+    "pdf",
+    "pdf-parser",
+    "pdf-tables",
+    "pdf-reader",
+    "pdfjs"
+  ],
+  "author": "Wilfredo Pomier (wpomier@pomgui.com)",
+  "license": "BSD-3-Clause",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pomgui/pdf-tables-parser.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "scripts": {
+    "build": "npm run clean && tsc && webpack",
+    "tsc": "tsc",
+    "clean": "rm -r ./demo/bundles ./dist ./coverage 2>/dev/null; true",
+    "cover": "nyc npm run test",
+    "cover:check": "nyc --check-coverage npm run test",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls",
+    "lint": "tslint src/**/*.ts test/**/*.ts",
+    "postversion": "git push && git push --tags",
+    "prepare": "npm run build",
+    "test": "jasmine-ts --config=spec/support/jasmine.json",
+    "version": "npm run build"
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.4.4",
+    "@types/node": "^14.6.4",
+    "@types/pdfjs-dist": "^2.1.5",
+    "jasmine": "^3.5.0",
+    "jasmine-ts": "^0.3.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^9.0.0",
+    "tslint": "^6.0.0",
+    "typescript": "^4.0.2"
+  },
+  "dependencies": {
+    "pdfjs-dist": "^2.5.207",
+    "tslib": "^2.0.1"
+  }
+}

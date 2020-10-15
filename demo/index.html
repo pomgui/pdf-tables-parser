@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>@pomgui/pdf-tables-parser</title>
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script
+        src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular-sanitize.min.js"></script>
+    <link rel="stylesheet" href="demo.css">
+    <script type="text/javascript" src="./bundles/main.bundle.js"></script>
+</head>
+
+<body ng-app="demoApp">
+    <div ng-controller="DemoController as $ctrl">
+        <h1>PDF tables parser</h1>
+        <div pi-drop>
+            Drop PDF here<br>
+            <input type="file" pi-file>
+        </div>
+        <div ng-if="error" class="error" ng-bind="error"></div>
+
+        <section ng-if="pdf">
+            <div class="options">
+                Select Page:
+                <a ng-repeat="page in pdf.pages"
+                    ng-class="{sel:curpage.pageNumber==page.pageNumber}"
+                    ng-click="setPage(page)" ng-bind="page.pageNumber"></a>
+            </div>
+            <div ng-if="curpage" class="options">
+                Select Table:
+                <a ng-repeat="table in curpage.tables"
+                    ng-class="{sel:curtable.tableNumber==table.tableNumber}"
+                    ng-click="setTable(table)" ng-bind="table.tableNumber"></a>
+            </div>
+            <div ng-if="curtable" class="options">
+                View Format:
+                <a ng-repeat="f in ['HTML', 'CSV', 'JSON']"
+                    ng-class="{sel:format==f}" ng-click="setFormat(f)"
+                    ng-bind="f"></a>
+            </div>
+            <div class="content" ng-bind-html="content"
+                ng-class="{mono:format!='HTML'}">
+            </div>
+        </section>
+    </div>
+</body>
+
+</html>
