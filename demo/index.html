@@ -40,8 +40,7 @@
                     ng-class="{sel:format==f}" ng-click="setFormat(f)"
                     ng-bind="f"></a>
             </div>
-            <div class="content" ng-bind-html="content"
-                ng-class="{mono:format!='HTML'}">
+            <div class="content" ng-bind-html="content" ng-class="format">
             </div>
         </section>
     </div>

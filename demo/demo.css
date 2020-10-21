@@ -1,5 +1,10 @@
 * {
-    box-sizing: border-box;
+    box-sizing : border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+div {
+    font-size: 14px;
 }
 
 div.error {
@@ -72,8 +77,19 @@ table {
     border: 2px solid #000;
 }
 
-.content.mono {
+.content.JSON,
+.content.CSV {
     white-space: pre;
     font-family: 'Courier New', Courier, monospace;
     overflow   : auto;
+}
+
+.content.HTML {}
+
+tr.cols,
+td.row {
+    font-weight: bold;
+    text-align : center;
+    background : #ddd;
+    font-size  : 12px;
 }

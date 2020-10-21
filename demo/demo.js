@@ -34,18 +34,30 @@ angular.module('demoApp', ['ngSanitize'])
             $scope.curtable = table;
             switch ($scope.format) {
                 case 'HTML':
-                    $scope.content = $sce.trustAsHtml(table.asHtml()); break;
+                    let html = table.asHtml();
+                    html = addHtmlRowsColsIds(html);
+                    $scope.content = $sce.trustAsHtml(html); break;
                 case 'JSON':
                     $scope.content = JSON.stringify(table, (k, v) => k.startsWith('$$') ? undefined : v, 2)
                         .replace(/\n/g, '<br>'); break;
                 case 'CSV':
-                    $scope.content = table.asDelimitedText();break;
-                        // .replace(/\n/g, '<br>'); break;
+                    $scope.content = table.asDelimitedText(); break;
+                // .replace(/\n/g, '<br>'); break;
             }
         }
         $scope.setFormat = f => {
             $scope.format = f;
             $scope.setTable($scope.curtable);
+        };
+        function addHtmlRowsColsIds(html) {
+            let row = 0;
+            return html
+                .replace(/<tr>/g, g => g + `<td class="row">${row++}</td>`)
+                .replace(/<table>/, g => g + `<tr class="cols"><td>#</td>`
+                    + new Array($scope.curtable.numcols).fill(0)
+                        .map((_, col) => `<td>${col}</td>`).join('')
+                    + '</tr>'
+                );
         }
     }])
 
