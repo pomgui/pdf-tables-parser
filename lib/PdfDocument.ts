@@ -1,6 +1,7 @@
-import { PDFDocumentProxy, PDFPageProxy, TextContent, TextContentItem } from 'pdfjs-dist';
+import { PDFDocumentProxy, PDFPageProxy } from 'pdfjs-dist';
 import { PdfTable } from './PdfTable';
 import { Options, PdfPage } from './types';
+import { TextContent, TextItem, TextMarkedContent } from 'pdfjs-dist/types/src/display/api';
 const pdflib = require('pdfjs-dist/build/pdf');
 
 interface _PdfString {
@@ -42,7 +43,9 @@ export class PdfDocument {
             for (let i = 1; i <= this.numPages; i++) {
                 const page = await p(pdfdriver.getPage(i)) as PDFPageProxy;
                 const content = (await p(page.getTextContent()) as TextContent)
-                    .items.map(setTextBounds);
+                    .items
+                    .filter(i => 'transform' in i)
+                    .map(i => setTextBounds(i as TextItem));
                 this.pages.push({
                     pageNumber: i,
                     tables: this._extractTables(content)
@@ -57,7 +60,7 @@ export class PdfDocument {
             return new Promise((resolve, reject) => promise.then(resolve, reject));
         }
 
-        function setTextBounds(i: TextContentItem) {
+        function setTextBounds(i: TextItem) {
             const x = i.transform[4], y = i.transform[5], s = i.str,
                 x2 = x + i.width,
                 y2 = y - i.height;

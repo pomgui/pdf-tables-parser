@@ -1,4 +1,4 @@
-const pdflib = require('pdfjs-dist/es5/build/pdf'),
+const pdflib = require('pdfjs-dist/build/pdf'),
     { PdfDocument } = require('../dist/PdfDocument');
 
 pdflib.GlobalWorkerOptions.workerSrc = './bundles/main.bundle.worker.js';
