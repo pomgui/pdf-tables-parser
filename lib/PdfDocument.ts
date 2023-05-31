@@ -1,7 +1,7 @@
 import { PDFDocumentProxy, PDFPageProxy, TextContent, TextContentItem } from 'pdfjs-dist';
 import { PdfTable } from './PdfTable';
 import { Options, PdfPage } from './types';
-const pdflib = require('pdfjs-dist/es5/build/pdf');
+const pdflib = require('pdfjs-dist/build/pdf');
 
 interface _PdfString {
     x: number; y: number; x2: number; y2: number; //w: number; h: number;
